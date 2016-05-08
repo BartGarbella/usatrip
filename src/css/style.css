@@ -1,0 +1,33 @@
+body {
+	background-color: #404040;
+	color: #fff;
+}
+
+a {
+	cursor: pointer;
+}
+
+input {
+	color: black;
+}
+
+.page1 {
+	color: #fff;
+}
+
+tbody tr:hover {
+	color: #000;
+}
+
+.glyphicon-ok {
+	color: green;
+}
+
+
+.glyphicon-remove {
+	color: red;
+}
+
+.panel-custom {
+	background-color: #777;
+}
