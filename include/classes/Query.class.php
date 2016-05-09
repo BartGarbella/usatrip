@@ -27,6 +27,7 @@ class Query extends DatabaseConnect {
 
         $selectQuery = "SELECT * FROM ".$table;
 
+
     	try {
         	$stmt = $this->_db->prepare($selectQuery);
         	$stmt->execute();
