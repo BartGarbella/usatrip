@@ -25,6 +25,7 @@ class Query extends DatabaseConnect {
     public function selectAll($table) {
 
 
+
         $selectQuery = "SELECT * FROM ".$table;
 
 
@@ -41,13 +42,18 @@ class Query extends DatabaseConnect {
     }
 
 
+    public function update($id) {
+
+    }
+
+
 
     private function insert($data) {
 
 
 
 
-        $insertQuery = 'INSERT INTO users 
+        $insertQuery = 'INSERT INTO costs 
         ('.implode(",",array_keys($data)).') 
         VALUES ('.implode(",",array_fill(0,count($data),"?")).')';
 

@@ -5,7 +5,7 @@
 $requiredFiles = array(
 	'src/js/jquery-1.12.3.min.js',
 	'src/js/bootstrap.min.js',
-	'src/css/bootstrap.min.css',
+	'src/css/bootstrap.css',
 	'src/css/style.css'
 	);
 
@@ -43,7 +43,7 @@ $registeredFiles = new Files();
 		<!-- Collect the nav links, forms, and other content for toggling -->
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav">
-				<li><a class="navbutton" value="list">Liste</a></li>
+				<li id="listLi"><a class="navbutton" value="list">Liste</a></li>
 				<li><a class="navbutton" value="create">Erstellen</a></li>
 			</ul>
 		</div><!-- /.navbar-collapse -->
@@ -58,7 +58,14 @@ $registeredFiles = new Files();
 
 <script type="text/javascript">
 
+	$(document).ready(function(){
+		$('#listLi').addClass('active');
+		load('render','list');
+	})
+
 	$('.navbutton').click(function render() {
+		$('.navbutton').parent().removeClass('active');
+		$(this).parent().addClass('active');
 		var file = $(this).attr('value');
 		var type = 'render';
 		load(type,file);
@@ -72,8 +79,6 @@ $registeredFiles = new Files();
 		dataObject[type] = payload;
 
 
-		// $('.navbutton').parent().removeClass('active');
-		// $(this).parent().addClass('active');
 
 		$.ajax({
 			type: "POST",
