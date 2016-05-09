@@ -2,7 +2,7 @@
 $object = new Query();
 $resultRow = $object->selectAll("costs");
 $object2 = new Query();
-$balanceBart = $object2->selectAll("balancetobart");
+$balanceBart = $object2->selectAll("balance");
 ?>
 <div class="container">
 	<div class="panel panel-custom">
@@ -61,8 +61,8 @@ $balanceBart = $object2->selectAll("balancetobart");
 				<td><?= $value['Name'] ?></td>
 				<td style="text-align: right"><?= $value['Currency'] == 'USD' ? '~ '.number_format($value['Sum']*(0.87),2).' €' : $value['Sum'].' €' ?></td>
 				<td><?= $value['Share']*(100).' %'?></td>
-				<td style="text-align: right"><?= number_format($share1 = ($value['Sum']*$value['Share']),2).' €' ?></td>
-				<td style="text-align: right"><?= number_format(($value['Sum'] - $share1),2).' €' ?></td>
+				<td style="text-align: right"><?= $value['Currency'] == 'USD' ? number_format($value['Sum']*(0.87),2)*explode("/", $value['Share'])[0].' €' : $share_1 =  $value['Sum']*$value['Share'].' €' ?></td>
+				<td style="text-align: right"><?= $value['Sum'] - $share_1 ?></td>
 				<td><?= $value['PaidBy'] ?></td>
 				<td><?= $value['Balanced'] == '1' ? $value['BalancedDate'].' <span class="glyphicon glyphicon-ok"></span>' : 'Noch nicht <span class="glyphicon glyphicon-remove"></span>' ?></td>
 				<td>
