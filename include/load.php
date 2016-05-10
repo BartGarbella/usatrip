@@ -24,8 +24,8 @@ if(isset($_POST['render'])) {
 
 
 
-if(isset($_POST['submit'])) {
+if(isset($_POST['submit']) || isset($_POST['update'])) {
 	$template = new Query();
-	$result = $template->decode($_POST['submit']);
+	$result = $template->decode($_POST);
 	echo $result;
 }

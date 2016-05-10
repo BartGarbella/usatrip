@@ -17,7 +17,7 @@
 		</div>
 		<div class="form-group">
 			<label for="InputPaidBy">Währung</label>
-			<select class="form-control" name="PaidBy">
+			<select class="form-control" name="Currency">
 				<option value="USD">U.S. Dollar $</option>
 				<option value="EUR">Euro €</option>
 			</select>
@@ -40,12 +40,21 @@
 				<option value="Jessi">Jessi</option>
 			</select>
 		</div>
-		<input type="hidden"></input>
+
+		<button type="submit" id="createbtn" class="btn btn-custom">Speichern</button>
 	</form>
-	<button id="createbtn" class="btn btn-default">Speichern</button>	
 </div>
 
+
+
+
 <script>
+
+	// $('#createform').bind('#createbtn' , function(event) {
+	// 	event.preventDefault();
+	// })
+
+
 	$('#InputShareBart').on('input change',function(){
 		$('#InputShareJessi').val(100 - $('#InputShareBart').val())
 		if(parseInt($("#InputShareBart").val()) > 100) {
@@ -66,7 +75,10 @@
 	})
 
 
-	$('#createbtn').click(function(){
+	$('#createform').submit(function(event){
+
+		 event.preventDefault();
+
 
 		var _ShareBart = $('#InputShareBart').val();
 		var _ShareJessi = $('#InputShareJessi').val();

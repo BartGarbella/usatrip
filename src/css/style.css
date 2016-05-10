@@ -7,9 +7,9 @@ a {
 	cursor: pointer;
 }
 
-input {
+input, select {
 	color: black;
-	border-radius: 0px;
+	border-radius: 0px!important;
 }
 
 .page1 {
@@ -116,9 +116,20 @@ tbody tr:hover {
 #createbtn {
 	float: right;
 }
+
 #createbtn:hover {
-	background-color: #73e600;
-	color: black;
+
+}
+
+.btn-custom {
+  text-align: center;
+  background-color: #999;
+  color: black;
+}
+.btn-custom:hover {
+  background-color: #73e600;
+  box-shadow: 0px 0px 7px #73e600; 
+
 }
 
 thead {
@@ -146,4 +157,16 @@ thead {
   .container-create {
   width: 100%;
   }
+
+
+}
+
+
+.modal-content {
+  border-radius: 0px;
+  background-color: #777;
+}
+
+textarea {
+  color: #000;
 }

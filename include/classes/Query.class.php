@@ -12,11 +12,20 @@ class Query extends DatabaseConnect {
 
 	// Reviece string-Payload from Ajax POST and decode into array	    
     public function decode($string) {
+
+
     	$data = array();
 
-    	parse_str($string, $data);
+        if(array_key_exists("submit", $string)) {
+        	parse_str($string['submit'], $data);
+        	$this->insert($data);
+        }elseif(array_key_exists("update", $string)){
+            parse_str($string['update'], $data);
+            $this->update($data);
+        }
 
-    	$this->insert($data);
+
+
     }
 
 
@@ -42,7 +51,34 @@ class Query extends DatabaseConnect {
     }
 
 
-    public function update($id) {
+    public function update($data) {
+
+        $query = "";
+
+        if(isset($data['id'])){
+            $id = substr($data['id'], 9);
+            unset($data['id']);
+        }
+
+         $data = array_merge($data,array('Changed' => date("Y-m-d")));      
+
+        foreach ($data as $key => $value) {
+            $query .= "`".$key."` = ?,";
+        }
+
+        $query = substr($query,0, -1);
+
+        $insertQuery = "UPDATE costs SET ".$query." WHERE id = ".$id;
+
+
+        try {
+            $stmt = $this->_db->prepare($insertQuery);
+            $stmt->execute(array_values($data));
+            $this->_db = NULL;
+        }catch (PDOException $e) {
+            print "Error: ".$e->getMessage() . "<br/>";
+            die();
+        }
 
     }
 
@@ -50,6 +86,12 @@ class Query extends DatabaseConnect {
 
     private function insert($data) {
 
+        $data['Sum'] = str_replace(",", ".", $data['Sum']);
+        if (!strpos($data['Sum'], '.')) {
+            $data['Sum'] = $data['Sum'].'.00';
+        }
+
+        $data = array_merge($data,array('Created' => date("Y-m-d"),'Balanced' => '0'));
 
 
 
