@@ -13,13 +13,13 @@ $balanceJessi = $objectJessi->selectAll("balancejessi")[0]['ToBalance'];
 		</div>
 		<div class="panel-body">
 			<div class="row">
-				<div class="col-md-6">
+				<div class="col-xs-6">
 					<p class="panel-custom-heading">Bart an Jessi</p>
-					<p><?php echo $balanceJessi.' €' ?></p>
+					<p><?php if(!empty($balanceJessi)) {echo $balanceJessi.' €';} ?></p>
 				</div>
-				<div class="col-md-6">
+				<div class="col-xs-6">
 					<p class="panel-custom-heading">Jessi an Bart</p>
-					<p><?php echo $balanceBart.' €' ?></p>
+					<p><?php if(!empty($balanceBart)) {echo $balanceBart.' €';} ?></p>
 				</div>				
 			</div>
 		</div>
@@ -35,6 +35,7 @@ $balanceJessi = $objectJessi->selectAll("balancejessi")[0]['ToBalance'];
 </div>
 
 <div class="container">
+<div class="table-responsive">
 	<table class="table table-hover">
 		<thead>
 			<tr>
@@ -81,5 +82,7 @@ $balanceJessi = $objectJessi->selectAll("balancejessi")[0]['ToBalance'];
 			<?php } ?>
 		</tbody>
 	</table>
+	
+</div>
 </div>
 

@@ -23,13 +23,12 @@
 			</select>
 		</div>
 		<div class="form-group form-line">
-
 			<label for="InputSum">Anteil - Bart / Jessi</label>
 			<div class="row">
-				<div class="col-md-6">
-					<input type="number" class="form-control" name="ShareBart" min="0" max="100" id="InputShareBart" required value="50">
+				<div class="col-xs-6">
+					<input type="text" class="form-control" name="ShareBart" min="0" max="100" id="InputShareBart" required value="50">
 				</div>
-				<div class="col-md-6">
+				<div class="col-xs-6">
 					<input type="text" class="form-control" name="ShareJessi" id="InputShareJessi" readonly  placeholder="" value="50">					
 				</div>
 			</div>
@@ -41,6 +40,7 @@
 				<option value="Jessi">Jessi</option>
 			</select>
 		</div>
+		<input type="hidden"></input>
 	</form>
 	<button id="createbtn" class="btn btn-default">Speichern</button>	
 </div>
@@ -56,6 +56,10 @@
 
 	$('input, select').on("focus",function(){
 		$(this).parent().addClass('labelcolor');
+		$('.navbar-toggle').addClass('collapsed');
+		$('.navbar-toggle').attr('aria-expanded','false');
+		$('#bs-example-navbar-collapse-1').attr('aria-expanded','false');
+		$('#bs-example-navbar-collapse-1').removeClass('in');
 	})
 	$('input, select').on("focusout",function(){
 		$(this).parent().removeClass('labelcolor');
@@ -63,7 +67,17 @@
 
 
 	$('#createbtn').click(function(){
-		console.log($('#createform').serialize());
+
+		var _ShareBart = $('#InputShareBart').val();
+		var _ShareJessi = $('#InputShareJessi').val();
+		
+		$('#InputShareBart').val(_ShareBart/100);
+		$('#InputShareJessi').val(_ShareJessi/100);
+		
+		var _type = 'submit';
+		var _payload = $('#createform').serialize();
+		load(_type,_payload);
+		load("render","list");
 	})
 
 
