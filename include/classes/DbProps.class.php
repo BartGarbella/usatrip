@@ -11,7 +11,7 @@ class DbProps
 			'database' => 'usa_trip',
 			'charset'  => 'utf8',
 			'username' => 'root',
-			'password' => ''
+			'password' => 'HellFire123'
 			);
 	
 	function __construct() {

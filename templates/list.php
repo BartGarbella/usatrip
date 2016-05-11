@@ -79,7 +79,7 @@ $balanceJessi = $objectJessi->selectAll("balancejessi")[0]['ToBalance'];
 					<td>
 						<!-- <div class="btn-group"> -->
 							<button id="deleteBtn<?= $value['ID'] ?>" class="btn btn-custom deleteBtn" data-toggle="modal" data-target="#archiveModal"><span class="glyphicon glyphicon-trash"></span></button>
-							<button id="deleteBtn<?= $value['ID'] ?>" class="btn btn-custom" data-toggle="modal" data-target="#modifyModal"><span class="glyphicon glyphicon-trash"></span></button>
+							<!-- <button id="deleteBtn<?= $value['ID'] ?>" class="btn btn-custom" data-toggle="modal" data-target="#modifyModal"><span class="glyphicon glyphicon-trash"></span></button> -->
 
 						<!-- </div> -->
 					</td>

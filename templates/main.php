@@ -1,6 +1,5 @@
 <?php 
-
-
+session_start();
 
 $requiredFiles = array(
 	'src/js/jquery-1.12.3.min.js',
@@ -46,6 +45,11 @@ $registeredFiles = new Files();
 				<li id="listLi"><a class="navbutton" value="list">Liste</a></li>
 				<li><a class="navbutton" value="create">Erstellen</a></li>
 			</ul>
+			<ul class="nav navbar-nav navbar-right">
+			<?php if(isset($_SESSION['loggedin'])) { ?>
+        		<li><a href="/management/functions/logout.php">Logout</a></li>
+        	<?php } ?>
+      		</ul>
 		</div><!-- /.navbar-collapse -->
 	</div><!-- /.container-fluid -->
 </nav>

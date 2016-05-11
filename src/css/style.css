@@ -101,6 +101,9 @@ tbody tr:hover {
   background-color: #080808;
 }
 
+.form-control {
+  background-color: #ccc;
+}
 
 .form-control:focus {
   border-color: #73e600;
