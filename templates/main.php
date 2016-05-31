@@ -42,6 +42,7 @@ $registeredFiles = new Files();
 		<!-- Collect the nav links, forms, and other content for toggling -->
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav">
+				<li id="planLi"><a class="navbutton" value="plan">Reiseplanung</a></li>
 				<li id="listLi"><a class="navbutton" value="list">Liste</a></li>
 				<li><a class="navbutton" value="create">Erstellen</a></li>
 			</ul>

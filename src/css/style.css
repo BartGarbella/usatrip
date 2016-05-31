@@ -173,3 +173,76 @@ thead {
 textarea {
   color: #000;
 }
+
+
+
+.col-calendar {
+  border-radius: 0px;
+  border-style: solid;
+  border-width: 1px;
+  border-color: transparent;
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
+
+@media (min-width: 768px){
+  .seven-cols .col-md-1,
+  .seven-cols .col-sm-1,
+  .seven-cols .col-lg-1  {
+    width: 100%;
+    *width: 100%;
+  }
+}
+
+
+@media (min-width: 992px) {
+  .seven-cols .col-md-1,
+  .seven-cols .col-sm-1,
+  .seven-cols .col-lg-1 {
+    width: 14.285714285714285714285714285714%;
+    *width: 14.285714285714285714285714285714%;
+  }
+}
+
+
+@media (min-width: 1200px) {
+  .seven-cols .col-md-1,
+  .seven-cols .col-sm-1,
+  .seven-cols .col-lg-1 {
+    width: 14.285714285714285714285714285714%;
+    *width: 14.285714285714285714285714285714%;
+  }
+}
+
+
+.panel-calendar {
+  border-color: #777;
+  border-radius: 0px;
+  margin-bottom: 0px;
+  transition: 0.5s;
+}
+
+.panel-calendar:hover {
+  transition: 0.5s;
+  border-color: #73e600;+
+  box-shadow: 10px;
+}
+
+.panel-calendar > .panel-heading {
+  border-radius: 0px;
+  background-color: #777;
+  padding: 5px 7.5px;  
+}
+
+.panel-calendar > .panel-body {
+  border-radius: 0px;
+  background-color: #aaa;
+  padding: 5px 7.5px;    
+}
+
+.panel-calendar > .panel-footer {
+  border-radius: 0px;
+  background-color: #aaa;
+  padding: 5px 7.5px;    
+}
