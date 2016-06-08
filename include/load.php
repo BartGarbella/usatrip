@@ -1,5 +1,10 @@
 <?php 
 
+
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
 require_once 'functions.php';
 
 function autoloader($class) {
@@ -17,15 +22,28 @@ spl_autoload_register('autoloader');
 
 
 if(isset($_POST['render'])) {
+	$result = array('render' => '');
 	$template = new Template();
-	$result = $template->renderPartial($_POST['render']);
-	echo $result ;
+	$result['render'] = $template->renderPartial($_POST['render']);
+	echo json_encode($result);
 }
 
 
 
 if(isset($_POST['submit']) || isset($_POST['update'])) {
-	$template = new Query();
-	$result = $template->decode($_POST);
-	echo $result;
+	$result = array('info' => '');
+	$query = new Query();
+	$result['info'] = $query->decode($_POST);
+	echo json_encode($result);
+}
+
+
+if(isset($_POST['modify'])) {
+	// $result = array('modifyresult' => $_POST);
+// 
+
+
+	$query = new Query();
+	$result['modify'] = $query->select("costs", substr($_POST['modify'], 9));
+	echo json_encode($result) ;
 }

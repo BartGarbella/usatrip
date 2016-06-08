@@ -1,5 +1,7 @@
 <?php 
-
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 class Query extends DatabaseConnect {
 
 	private $_db;
@@ -23,25 +25,28 @@ class Query extends DatabaseConnect {
             parse_str($string['update'], $data);
             $this->update($data);
         }
-
-
-
     }
 
 
 
 
-    public function selectAll($table) {
+    public function select($table,$row) {
+        $special = '';
+        if(!empty($row)) {
+            $special = ' AND id = '.$row;
+        }
 
-
-
-        $selectQuery = "SELECT * FROM ".$table;
+        $selectQuery = "SELECT * FROM ".$table.$special;
 
 
     	try {
         	$stmt = $this->_db->prepare($selectQuery);
         	$stmt->execute();
-        	$result = $stmt->fetchAll(PDO::FETCH_ASSOC);	
+            if(isset($row)) {
+            	$result = $stmt->fetch(PDO::FETCH_ASSOC);	
+            } else {
+                $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            }
     	} catch (PDOException $e) {
     		print "Error:" . $e->getMessage() . "<br/>";
             die();	
@@ -53,14 +58,23 @@ class Query extends DatabaseConnect {
 
     public function update($data) {
 
+
         $query = "";
+        if(isset($data['BalancedDate'])) {
+            $data['BalancedDate'] = date("Y-m-d");
+            $data['Balanced'] = "1";
+        }
 
         if(isset($data['id'])){
             $id = substr($data['id'], 9);
             unset($data['id']);
         }
 
-         $data = array_merge($data,array('Changed' => date("Y-m-d")));      
+        $data = array_merge($data,array('Changed' => date("Y-m-d")));
+
+
+        
+
 
         foreach ($data as $key => $value) {
             $query .= "`".$key."` = ?,";
@@ -68,7 +82,7 @@ class Query extends DatabaseConnect {
 
         $query = substr($query,0, -1);
 
-        $insertQuery = "UPDATE costs SET ".$query." WHERE id = ".$id;
+        $insertQuery = "UPDATE costs SET ".$query." WHERE id = '".$id."'";
 
 
         try {
@@ -79,6 +93,8 @@ class Query extends DatabaseConnect {
             print "Error: ".$e->getMessage() . "<br/>";
             die();
         }
+
+        return("success");
 
     }
 
@@ -91,7 +107,7 @@ class Query extends DatabaseConnect {
             $data['Sum'] = $data['Sum'].'.00';
         }
 
-        $data = array_merge($data,array('Created' => date("Y-m-d"),'Balanced' => '0'));
+        $data = array_merge($data,array('Created' => date("Y-m-d"),'BalancedDate' => '0'));
 
 
 

@@ -1,5 +1,6 @@
 <?php 
 session_start();
+require('../management/functions/session.php');
 
 $requiredFiles = array(
 	'src/js/jquery-1.12.3.min.js',
@@ -10,7 +11,6 @@ $requiredFiles = array(
 
 
 $registeredFiles = new Files();
-
 // echo hash("sha256","test");
 ?>
 
@@ -36,7 +36,7 @@ $registeredFiles = new Files();
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="#">Brand</a>
+			<a class="navbar-brand" href="/backend">Backend</span></a>
 		</div>
 
 		<!-- Collect the nav links, forms, and other content for toggling -->
@@ -61,48 +61,8 @@ $registeredFiles = new Files();
 
 </body>
 
-<script type="text/javascript">
-
-	$(document).ready(function(){
-		$('#listLi').addClass('active');
-		load('render','list');
-	})
-
-	$('.navbutton').click(function render() {
-		$('.navbutton').parent().removeClass('active');
-		$(this).parent().addClass('active');
-		var file = $(this).attr('value');
-		var type = 'render';
-		load(type,file);
-	});
+<script type="text/javascript" src="src/js/functions.js" charset="utf-8"></script>
 
 
-
-
-	function load(type,payload) {
-		var dataObject = {};
-		dataObject[type] = payload;
-
-
-
-		$.ajax({
-			type: "POST",
-			data: dataObject,
-			url: "./include/load.php",
-			success: function(data) {
-				result=data;
-				$('#content').html(result);
-			}
-		}); 
-	}
-
-	function load2(type,payload) {
-		var dataObject = {};
-		dataObject[type] = payload;
-
-		console.log(dataObject);
-	}
-
-</script>
 
 </html>

@@ -77,7 +77,7 @@
 
 	$('#createform').submit(function(event){
 
-		 event.preventDefault();
+		event.preventDefault();
 
 
 		var _ShareBart = $('#InputShareBart').val();
