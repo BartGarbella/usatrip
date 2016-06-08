@@ -33,7 +33,7 @@ class Query extends DatabaseConnect {
     public function select($table,$row) {
         $special = '';
         if(!empty($row)) {
-            $special = ' AND id = '.$row;
+            $special = ' WHERE id = '.$row;
         }
 
         $selectQuery = "SELECT * FROM ".$table.$special;
