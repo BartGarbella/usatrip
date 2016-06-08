@@ -11,63 +11,39 @@ $day_content = $content_object->select("days",null);
 // echo "<pre>";
 // var_dump($day_content);
 // echo "</pre>";
+foreach($days as &$val1){
+	foreach($day_content as $key  => $value){
+		if($val1['id'] == $value['id_day']) {
+			$val1['content'][] = $value;
+		}
+	}
+}
 
 
 
-
-// $days[]['content'] = $day_content[0];
 
 // echo "<pre>";
 // var_dump($days);
 // echo "</pre>";
 
-$arr1 = array(
-	array(
-		'id' => 18,
-		'name' => 'name1',
-		'stuff' => null
-		),
-	array(
-		'id' => 29,
-		'name' => 'name2',
-		'stuff' => null
-		)
-	);
 
-
-
-$arr2 = array(
-	array(
-		'id' => 1,
-		'text' => 'abc',
-		'ref_id' => 18
-		),
-	array(
-		'id' => 2,
-		'text' => 'abc',
-		'ref_id' => 18
-		),
-	array(
-		'id' => 3,
-		'text' => 'abc',
-		'ref_id' => 29
-		)
-	);
-
-
-foreach($arr1 as &$val1){
-	foreach($arr2 as $key  => $value){
-		// echo "<pre>";
-		// var_dump($val1);
-		// echo "</pre>";
-		if($val1['id'] == $value['ref_id']) {
-			$val1['stuff'][] = $value;
+foreach ($days as $day => $date) {
+	if(array_key_exists('content', $date)) {
+		foreach ($date['content'] as $value) {
+			echo "<pre>";
+			var_dump($value["desc"]);
+			echo "</pre>";
 		}
 	}
+	// foreach ($date as $key => $value) {
+	// 	echo "<pre>";
+	// 	var_dump($key);
+	// 	echo "</pre>";
+
+	// }
+
 }
-echo "<pre>";
-var_dump($arr1);
-echo "</pre>";
+
 ?>
 
 <div class="container">
@@ -79,7 +55,11 @@ echo "</pre>";
 						<span><?= $date['day'].','.$date['date'] ?></span>
 					</div>
 					<div class="panel-body">
-						body
+						<?php if(array_key_exists('content', $date)) {
+							foreach ($date['content'] as $value) {
+								echo ($value["desc"].'<br>');
+							}
+						} ?>
 					</div>
 					<div class="panel-footer">
 						<div class="btn-group">
