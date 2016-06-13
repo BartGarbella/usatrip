@@ -20,7 +20,7 @@ $registeredFiles = new Files();
 <head>
 
 	<meta charset="UTF-8">
-
+	<meta name=viewport content="width=device-width, initial-scale=1">
 	<title>Backend</title>
 	<?= $registeredFiles->registerFiles($requiredFiles); ?>
 </head>
